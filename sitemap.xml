@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Pages -->
+  <url>
+    <loc>https://trunkmobile.app/</loc>
+  </url>
+  <url>
+    <loc>https://trunkmobile.app/privacy.html</loc>
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://trunkmobile.app/blog/</loc>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://trunkmobile.app/blog/posts/001-packing-hacks.html</loc>
+  </url>
+  <url>
+    <loc>https://trunkmobile.app/blog/posts/002-carryon-guide.html</loc>
+  </url>
+  <url>
+    <loc>https://trunkmobile.app/blog/posts/003-smarter-with-trunk.html</loc>
+  </url>
+
+</urlset>
