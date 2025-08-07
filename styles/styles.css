@@ -375,7 +375,8 @@ section h2 {
 @media (max-width: 767px) {
   .hero-nav {
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-content {
@@ -392,5 +393,32 @@ section h2 {
   .hero-text-inner,
   .hero-screenshots-inner {
     align-items: center;
+  }
+
+  .hero-text-inner > * {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title {
+    align-self: center;
+  }
+
+  .tagline,
+  .button {
+    margin-left: auto !important;
+    margin-right: auto;
+  }
+
+  .hero-screenshots-inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-screenshots img {
+    width: 200px;
   }
 }
