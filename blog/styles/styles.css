@@ -1,16 +1,26 @@
+/* Design tokens — "Checklist" system (light) */
+:root{
+  --bg:#F5F7FA;   --card:#FFFFFF;  --ink:#16202B;  --ink-2:#6B7785;  --ink-3:#9AA4B0;
+  --border:#E8ECF1;  --divider:#F0F2F5;
+  --sky:#06A6F0;  --on-sky:#0A2A3D;  --sky-tint:#E7F6FE;  --sky-text:#0883C2;
+  --coral:#FF6B4A;  --coral-tint:#FFEDE7;  --coral-text:#E8512F;
+  --r-card:16px;  --r-btn:14px;
+  --shadow-card:0 4px 16px rgba(22,32,43,.06);
+}
+
 /* Global styles */
 body {
-  font-family: system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--bg);
+  color: var(--ink);
 }
 
 /* Header/Footer navigation (optional future expansion) */
 .site-header {
-  background: linear-gradient(135deg, #4FACFE, #00F2FE);
-  color: white;
+  background: var(--bg);
+  color: var(--ink);
   padding: 2rem 1.5rem 3rem;
   text-align: center;
   position: relative;
@@ -39,17 +49,19 @@ body {
 .site-header h1 {
   margin: 0;
   font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
 }
 
 .site-footer {
-  background-color: #f9f9fb;
-  border-top: 1px solid #e0e0e0;
-  color: #666;
+  background-color: var(--card);
+  border-top: 1px solid var(--border);
+  color: var(--ink-2);
   text-align: center;
   padding: 2rem 1rem;
 }
 .site-footer a {
-  color: #0077cc;
+  color: var(--sky-text);
 }
 
 .site-header nav ul {
@@ -72,12 +84,14 @@ body {
 
 .site-header nav ul li a,
 .site-footer nav ul li a {
-  color: white;
+  color: var(--ink);
+  font-weight: 600;
   text-decoration: none;
 }
 
 .site-header nav ul li a:hover,
 .site-footer nav ul li a:hover {
+  color: var(--sky-text);
   text-decoration: none;
 }
 
@@ -93,10 +107,11 @@ body {
 }
 
 .blog-list article {
-  background: #f9f9fb;
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   gap: 1.5rem;
@@ -105,25 +120,26 @@ body {
 
 .blog-list article:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 22px rgba(22, 32, 43, .10);
 }
 
 .blog-list img.thumbnail {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .blog-list h2 {
   margin-top: 0;
   font-size: 1.4rem;
-  color: #222;
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .blog-list p {
   margin-bottom: 0;
-  color: #444;
+  color: var(--ink-2);
 }
 
 .blog-list a {
@@ -150,11 +166,14 @@ main.blog-post {
 main.blog-post h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
 }
 
 main.blog-post h2 {
   font-size: 1.4rem;
   margin-top: 2rem;
+  font-weight: 700;
 }
 
 main.blog-post p {
@@ -168,7 +187,7 @@ main.blog-post ul {
 }
 
 main.blog-post a {
-  color: #0077cc;
+  color: var(--sky-text);
   text-decoration: underline;
 }
 
