@@ -1,28 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="google-site-verification" content="pKF7ivNDv7vS3oPGxFxO6no69DMk7vZL1f-w3tNy7zY" />
-      <!-- Open Graph -->
-    <meta property="og:title" content="Trunk – Smart Packing Assistant" />
-    <meta property="og:description" content="Travel with confidence when you use the Trunk app to help you pack." />
-    <meta property="og:image" content="/assets/images/twitter_banner.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://trunkmobile.app/" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Trunk Blog – Smart Packing Tips & Travel Advice">
-    <meta name="twitter:description" content="Travel tips, packing hacks, and smarter travel planning with Trunk.">
-    <meta name="twitter:image" content="/assets/images/twitter_banner.png">
-    <title>Trunk – Smart Packing Assistant</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
-    <script src="/assets/js/analytics.js" defer></script>
-    </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="pKF7ivNDv7vS3oPGxFxO6no69DMk7vZL1f-w3tNy7zY" />
+
+  <title>Trunk — Smart Packing List App for Travel</title>
+  <meta name="description" content="Plan trips, build reusable packing lists, and track exactly which bag each item is in. Trunk is a free packing list app for travelers. On iPhone." />
+  <link rel="canonical" href="https://trunkmobile.app/" />
+  <meta name="theme-color" content="#062336" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Trunk — Smart Packing List App for Travel" />
+  <meta property="og:description" content="Plan trips, build reusable packing lists, and track exactly which bag each item is in. Trunk is a free packing list app for travelers." />
+  <meta property="og:image" content="https://trunkmobile.app/assets/images/twitter_banner.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trunkmobile.app/" />
+  <meta property="og:site_name" content="Trunk" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trunk — Smart Packing List App for Travel" />
+  <meta name="twitter:description" content="Plan trips, build reusable packing lists, and track exactly which bag each item is in. Trunk is a free packing list app for travelers." />
+  <meta name="twitter:image" content="https://trunkmobile.app/assets/images/twitter_banner.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="./assets/images/app_icon_carryon.png" />
+  <script src="/assets/js/analytics.js" defer></script>
+
+  <!-- App entity. `name` matches the App Store listing exactly; the <title> above is
+       tuned for the SERP instead. No aggregateRating: unverifiable ratings are a
+       manual-action risk. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Trunk: Packing List & Trips",
+    "alternateName": "Trunk",
+    "operatingSystem": "iOS",
+    "applicationCategory": "TravelApplication",
+    "url": "https://trunkmobile.app/",
+    "downloadUrl": "https://apps.apple.com/app/trunk-smart-packing-assistant/id6747906870",
+    "description": "Trunk is a packing list app for travelers. Create a trip, build a packing list from a reusable item inventory, assign each item to a specific bag, and track what is still unpacked.",
+    "image": "https://trunkmobile.app/assets/images/twitter_banner.jpg",
+    "screenshot": [
+      "https://trunkmobile.app/assets/images/screenshot_1.png",
+      "https://trunkmobile.app/assets/images/screenshot_2.png",
+      "https://trunkmobile.app/assets/images/screenshot_3.png"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aquarius TX Labs",
+      "url": "https://trunkmobile.app/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Trunk",
+    "url": "https://trunkmobile.app/"
+  }
+  </script>
+</head>
     <body>
         <header class="hero">
             <div class="hero-nav">
@@ -38,7 +91,7 @@
                     <div class="hero-text-inner">
                         <div class="hero-title">
                             <!--<span class="material-symbols-rounded icon-logo">carry_on_bag</span>-->
-                            <img src="./assets/images/app_icon_new.svg" class="icon-logo" alt="App logo" />
+                            <img src="./assets/images/app_icon_new.svg" class="icon-logo" alt="Trunk app icon" />
                             <h1>Trunk</h1>
                         </div>
                         <p class="tagline">Travel with confidence.</p>
@@ -48,9 +101,9 @@
 
                 <div class="hero-screenshots">
                     <div class="hero-screenshots-inner">
-                        <img src="./assets/images/screenshot_1.png" alt="App Screenshot Trips" />
-                        <img src="./assets/images/screenshot_2.png" alt="App Screenshot Lists" />
-                        <img src="./assets/images/screenshot_3.png" alt="App Screenshot Items" />
+                        <img src="./assets/images/screenshot_1.png" width="1290" height="2796" fetchpriority="high" decoding="async" alt="Trunk trip list showing upcoming trips with packing progress for each" />
+                        <img src="./assets/images/screenshot_2.png" width="1290" height="2796" loading="lazy" decoding="async" alt="A saved packing list in Trunk, with items grouped by category" />
+                        <img src="./assets/images/screenshot_3.png" width="1290" height="2796" loading="lazy" decoding="async" alt="Trunk item inventory showing reusable items ready to add to a trip" />
                     </div>
                 </div>
             </div>
@@ -81,8 +134,8 @@
             </div>
 
             <div class="screenshot-row">
-                <img src="./assets/images/screenshot_4.png" alt="Trip Setup Screenshot" />
-                <img src="./assets/images/screenshot_5.png" alt="Packing List Screenshot" />
+                <img src="./assets/images/screenshot_4.png" width="1290" height="2796" loading="lazy" decoding="async" alt="Creating a new trip in Trunk with a destination and travel dates" />
+                <img src="./assets/images/screenshot_5.png" width="1290" height="2796" loading="lazy" decoding="async" alt="A Trunk packing list with items checked off and assigned to bags" />
             </div>
         </section>
 
