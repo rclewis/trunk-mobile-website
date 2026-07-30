@@ -1553,7 +1553,12 @@ Expected: exactly 11 lines, with the types above. Malformed schema is worse than
 du -sh assets/images
 ```
 
-Expected: substantially below the ~9.6 MB the directory held before Task 2.
+Expected: around 2.5 MB, down from 5.6 MB before Task 2.
+
+(An earlier revision of this plan said 9.6 MB. That was wrong — it came from
+misreading `ls -l`'s `total 9632`, which counts 512-byte blocks, not kilobytes.
+Task 8 caught it against git history. The four individual file sizes in Task 2's
+table were measured directly and are correct; only this directory total was off.)
 
 - [ ] **Step 5: Write the verification report and commit**
 
