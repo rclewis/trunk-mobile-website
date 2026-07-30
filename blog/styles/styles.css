@@ -194,3 +194,19 @@ main.blog-post a {
 main.blog-post a:hover {
   text-decoration: none;
 }
+
+/* The post pages demote the masthead to a div so the article title is the sole
+   h1. This mirrors .site-header h1 so nothing moves visually. */
+.site-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.post-date {
+  margin: 0 0 1.5rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
