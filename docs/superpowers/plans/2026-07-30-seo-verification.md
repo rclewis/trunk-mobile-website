@@ -199,3 +199,74 @@ These require the live site and the owner's Google/Facebook/LinkedIn accounts. T
 - **WebP conversion.** Resizing captures most of the saving. Revisit only if PageSpeed still falls short after Task 2.
 - **Swapping in the `assets/images/v2.0/` screenshots.** The live `screenshot_1–5.png` files show the old app UI. A content decision, not an SEO one.
 - **`aggregateRating` in the app schema.** Only worth adding against a verifiable, maintained source.
+
+---
+
+## Follow-ups found by the final whole-branch review
+
+Two findings from that review were fixed before merge: the three blog posts'
+social and schema images (which the Task 2 resize had pushed below Google's
+1200px Article guidance) now point at the 1200×630 banner, and the site-wide
+copyright year was updated to 2026. What remains is deliberately deferred.
+
+### Worth doing next: widen `scripts/check-seo.mjs`
+
+The script is the only automated check, and the sole safety net for the
+deliberate choice to duplicate the `<head>` across six pages. It does not yet
+catch the two failure modes that duplication most reliably produces. In
+priority order:
+
+1. **A stray `noindex` on an indexable page passes silently.** The script gates
+   on a filename-based `NOINDEX` set, never on the actual robots meta. A
+   misplaced `noindex` is the most damaging SEO defect possible and this is a
+   two-line check.
+2. **Nothing cross-checks `sitemap.xml` against the real page set.** Add a page
+   and forget the sitemap, or delete one and leave a stale `<loc>`, and the
+   script reports success either way.
+3. **Same-origin URLs are checked for an `https://` prefix but never for
+   whether the file exists.** The `twitter_banner.png` → `.jpg` rename was safe
+   only because of a hand-reasoned ordering argument; the harness could not have
+   enforced it.
+4. **Canonical uniqueness** — two pages sharing a canonical silently deindexes
+   one, and both would currently report `ok`.
+5. **Description uniqueness** — the classic regression from head duplication.
+
+### Minor, unfixed
+
+- Dead CSS: `styles/styles.css:150` and `:166` set `font-size:3.5rem` on
+  `.hero-title h1` / `.hero-text h1` and are now inert, shadowed ~380 lines
+  later. Renders correctly; editing line 150 would appear to do nothing.
+- A second `@media (max-width:767px)` block duplicates the query already present
+  earlier in the file.
+- `list-style:none` on the steps `<ol>` drops list semantics in Safari/VoiceOver.
+  The visible step numbers carry the ordinal, so no information is lost;
+  `role="list"` would restore both.
+- Internal links use `index.html` forms while canonicals use the directory form
+  (`/`, `/blog/`). Google resolves this via the canonicals, but it splits
+  internal link signal to the conversion target.
+- `styles/styles.css` uses the raw hex `#CFE8F5` twice for hero sub-text,
+  against the plan's own design-token constraint. The plan's prescribed CSS
+  contained the literal, so this is a plan self-contradiction — either add a
+  token or amend the constraint.
+- The design spec listed a standalone `Organization` node for the homepage;
+  only the nested `publisher` exists. Nothing is broken (`WebSite.name` serves
+  the SERP site name), but the drift is undocumented.
+- `BlogPosting.author` is an orphan entity with no `url` or `@id`.
+- The blog posts carry `BreadcrumbList` markup with no corresponding visible
+  breadcrumb trail.
+- `assets/images/lightbulb.jpg` is referenced by nothing in the repo.
+- The homepage meta description says "On iPhone" while FAQ Q6 says "iPhone and
+  iPad today."
+- Indentation: new `<head>` blocks use 2-space indent while page bodies use
+  4-space.
+
+### One finding investigated and withdrawn
+
+An earlier review flagged `.hero-lede` as losing block-centering between ~590px
+and 767px. The final review tested it in a real browser and disproved it. The
+specificity analysis was correct — the appended rule does win, and computed
+margins are `0px` — but the conclusion ignored flexbox: `.hero-text-inner` is
+`display:flex; flex-direction:column` with `align-items:center` inside the
+mobile query, so the element is cross-axis centered regardless, and the auto
+margins are merely redundant. Measured centers at 375/700/760px are identical to
+the pixel. No fix was needed. Recorded here so the same analysis is not redone.
