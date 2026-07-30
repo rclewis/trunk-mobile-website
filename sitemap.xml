@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Main Pages -->
+  <!-- Main pages -->
   <url>
     <loc>https://trunkmobile.app/</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://trunkmobile.app/privacy.html</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
 
-  <!-- Blog Index -->
+  <!-- Blog index -->
   <url>
     <loc>https://trunkmobile.app/blog/</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
 
-  <!-- Blog Posts -->
+  <!-- Blog posts -->
   <url>
     <loc>https://trunkmobile.app/blog/posts/001-packing-hacks.html</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://trunkmobile.app/blog/posts/002-carryon-guide.html</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://trunkmobile.app/blog/posts/003-smarter-with-trunk.html</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
 
 </urlset>
