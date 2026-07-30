@@ -75,6 +75,50 @@
     "url": "https://trunkmobile.app/"
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Trunk free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Trunk is free to download and use, with no ads and no subscription required for the packing features. A paid Pro tier with AI-generated lists and travel-app integrations is in development." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Trunk work offline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Your trips, packing lists, items, and bags all work offline, because they are stored on your device. Two things need a connection: searching for a destination and loading the weather forecast for a trip." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account to use Trunk?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Trunk has no accounts and no sign-up. Open the app and start building a list." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I reuse a packing list for another trip?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Trunk keeps a personal item inventory that carries across every trip, so you build each new list from things you have already added instead of starting over." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Trunk tell me which bag an item is in?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — that is what luggage tracking does. Assign each item to a specific bag as you pack, and Trunk shows you at a glance what is inside every bag." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Trunk available on Android?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Trunk is on iPhone and iPad today. An Android version is in development." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is my data stored?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On your device. Your trips, packing lists, items, and photos are stored locally and are not uploaded to us — there are no accounts, and we build no profile of you. Your device's own iCloud or Google backup may include the app's data, and limited anonymous usage and crash information is collected unless you turn it off. Full details are in our privacy policy." }
+      }
+    ]
+  }
+  </script>
 </head>
     <body>
         <header class="hero">
@@ -92,9 +136,13 @@
                         <div class="hero-title">
                             <!--<span class="material-symbols-rounded icon-logo">carry_on_bag</span>-->
                             <img src="./assets/images/app_icon_new.svg" class="icon-logo" alt="Trunk app icon" />
-                            <h1>Trunk</h1>
+                            <h1>
+                                <span class="wordmark">Trunk</span>
+                                <span class="h1-sub">Packing List App for Travel</span>
+                            </h1>
                         </div>
                         <p class="tagline">Travel with confidence.</p>
+                        <p class="hero-lede">Build a packing list for every trip, track exactly which bag each item is in, and reuse your lists next time. Everything stays on your device.</p>
                         <a class="button" href="https://apps.apple.com/app/trunk-smart-packing-assistant/id6747906870"><svg class="button-icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>Download on iOS</a>
                     </div>
                 </div>
@@ -108,34 +156,100 @@
                 </div>
             </div>
         </header>
+
+        <section id="how-it-works" class="centered-content">
+            <h2>How Trunk works</h2>
+            <ol class="steps">
+                <li>
+                    <span class="step-number">1</span>
+                    <h3>Create your trip</h3>
+                    <p>Add your destination and travel dates. Trunk keeps every trip separate, so a weekend away and a two-week holiday never get tangled together.</p>
+                </li>
+                <li>
+                    <span class="step-number">2</span>
+                    <h3>Build your packing list</h3>
+                    <p>Pull items from your saved inventory or add new ones as you think of them. Group them by category so nothing hides at the bottom of a long list.</p>
+                </li>
+                <li>
+                    <span class="step-number">3</span>
+                    <h3>Pack and check off</h3>
+                    <p>Assign each item to a specific bag as you pack it. Trunk shows what is still unpacked and what is inside every bag, right up to the moment you leave.</p>
+                </li>
+            </ol>
+        </section>
+
         <section id="features" class="centered-content">
-            <h2>Features</h2>
+            <h2>Everything you need to pack for a trip</h2>
             <div class="feature-grid">
                 <div class="feature">
                 <span class="material-symbols-rounded">flight_takeoff</span>
                 <h3>Create Trips</h3>
-                <p>Define destinations, travel dates, and trip summaries to stay organized.</p>
+                <p>Set your destination, dates, and trip notes, then keep every trip's packing list in its own place.</p>
                 </div>
                 <div class="feature">
                 <span class="material-symbols-rounded">checklist</span>
                 <h3>Build Packing Lists</h3>
-                <p>Add items, assign them to bags, and track your progress as you pack.</p>
+                <p>Add items, assign them to bags, and watch your packing progress as you check things off.</p>
                 </div>
                 <div class="feature">
                 <span class="material-symbols-rounded">checkroom</span>
                 <h3>Item Inventory</h3>
-                <p>Maintain a personalized list of categorized items for use across any of your trips.</p>
+                <p>Keep a reusable inventory of everything you travel with, categorized and ready to drop into your next trip.</p>
                 </div>
                 <div class="feature">
                 <span class="material-symbols-rounded">luggage</span>
                 <h3>Luggage Tracking</h3>
-                <p>Assign packed items to specific bags and see at-a-glance what's inside.</p>
+                <p>Know which suitcase, carry-on, or backpack every item went into — no more unzipping three bags to find your charger.</p>
                 </div>
             </div>
 
             <div class="screenshot-row">
                 <img src="./assets/images/screenshot_4.png" width="1290" height="2796" loading="lazy" decoding="async" alt="Creating a new trip in Trunk with a destination and travel dates" />
                 <img src="./assets/images/screenshot_5.png" width="1290" height="2796" loading="lazy" decoding="async" alt="A Trunk packing list with items checked off and assigned to bags" />
+            </div>
+        </section>
+
+        <section id="use-cases" class="centered-content">
+            <h2>Built for every kind of trip</h2>
+            <div class="use-case-grid">
+                <div class="use-case">
+                    <h3>Carry-on only</h3>
+                    <p>When every cubic inch counts, a written list is the difference between fitting a week into one bag and checking luggage you did not need. Build the list, trim it down, then pack against it.</p>
+                </div>
+                <div class="use-case">
+                    <h3>Family travel</h3>
+                    <p>Packing for four people means four sets of essentials and four times the chances to forget something. Keep a separate list per traveler and track whose things went into which bag.</p>
+                </div>
+                <div class="use-case">
+                    <h3>Business trips</h3>
+                    <p>The same trip, over and over. Save your standard work-travel list once and apply it to the next booking in seconds — chargers, adapters, and the good shirt included.</p>
+                </div>
+                <div class="use-case">
+                    <h3>Long and multi-stop trips</h3>
+                    <p>Longer trips mean more gear and more bags. Trunk keeps the full inventory visible, so you can see what is packed, what is missing, and where it all is before you move on.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-trunk" class="centered-content">
+            <h2>Why travelers choose Trunk</h2>
+            <div class="reason-grid">
+                <div class="reason">
+                    <h3>No account required</h3>
+                    <p>Download it and start packing. There is no sign-up, no password, and no profile to create.</p>
+                </div>
+                <div class="reason">
+                    <h3>Your data stays on your device</h3>
+                    <p>Trips, lists, and photos are stored locally on your phone rather than uploaded to us. We never see them.</p>
+                </div>
+                <div class="reason">
+                    <h3>Works without a signal</h3>
+                    <p>Your packing lists work offline, so a hotel with bad Wi-Fi or a plane at 30,000 feet does not lock you out.</p>
+                </div>
+                <div class="reason">
+                    <h3>Lists you can reuse</h3>
+                    <p>Your item inventory carries from trip to trip, so the second trip packs faster than the first.</p>
+                </div>
             </div>
         </section>
 
@@ -166,6 +280,42 @@
                     <p class="small-note">We’ll only email you about the Pro launch. No spam, ever.</p>
                 </div>
             </div>
+        </section>
+
+        <section id="faq" class="centered-content">
+            <h2>Frequently asked questions</h2>
+            <dl class="faq-list">
+                <dt>Is Trunk free?</dt>
+                <dd>Yes. Trunk is free to download and use, with no ads and no subscription required for the packing features. A paid Pro tier with AI-generated lists and travel-app integrations is in development.</dd>
+
+                <dt>Does Trunk work offline?</dt>
+                <dd>Your trips, packing lists, items, and bags all work offline, because they are stored on your device. Two things need a connection: searching for a destination and loading the weather forecast for a trip.</dd>
+
+                <dt>Do I need an account to use Trunk?</dt>
+                <dd>No. Trunk has no accounts and no sign-up. Open the app and start building a list.</dd>
+
+                <dt>Can I reuse a packing list for another trip?</dt>
+                <dd>Yes. Trunk keeps a personal item inventory that carries across every trip, so you build each new list from things you have already added instead of starting over.</dd>
+
+                <dt>Can Trunk tell me which bag an item is in?</dt>
+                <dd>Yes — that is what luggage tracking does. Assign each item to a specific bag as you pack, and Trunk shows you at a glance what is inside every bag.</dd>
+
+                <dt>Is Trunk available on Android?</dt>
+                <dd>Trunk is on iPhone and iPad today. An Android version is in development.</dd>
+
+                <dt>Where is my data stored?</dt>
+                <dd>On your device. Your trips, packing lists, items, and photos are stored locally and are not uploaded to us — there are no accounts, and we build no profile of you. Your device's own iCloud or Google backup may include the app's data, and limited anonymous usage and crash information is collected unless you turn it off. Full details are in our <a href="privacy.html">privacy policy</a>.</dd>
+            </dl>
+        </section>
+
+        <section id="from-the-blog" class="centered-content">
+            <h2>Packing tips from the Trunk blog</h2>
+            <ul class="blog-links">
+                <li><a href="./blog/posts/001-packing-hacks.html">10 Packing Hacks Every Frequent Traveler Swears By</a></li>
+                <li><a href="./blog/posts/002-carryon-guide.html">How to Pack 7 Days in a Carry-On</a></li>
+                <li><a href="./blog/posts/003-smarter-with-trunk.html">How Trunk Helps You Pack Smarter, Not Harder</a></li>
+            </ul>
+            <p class="blog-links-more"><a href="./blog/index.html">Read more on the blog →</a></p>
         </section>
 
         <footer>

@@ -522,3 +522,173 @@ section h2 {
     width: 200px;
   }
 }
+
+/* ---------------------------------------------------------------- hero h1 */
+/* The h1 carries both the wordmark and a descriptive line. Visible text, not a
+   hidden keyword span — hidden text works today and gets discounted later. */
+.hero-title h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  font-size: inherit;
+}
+
+.hero-title .wordmark {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+.hero-title .h1-sub {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.3;
+  color: #CFE8F5;
+}
+
+.hero-lede {
+  max-width: 34rem;
+  margin: 0.75rem 0 0;
+  color: #CFE8F5;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------- how Trunk works */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.steps li {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+.steps .step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--sky-tint);
+  color: var(--sky-text);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.9rem;
+}
+
+.steps h3 {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.steps p {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+/* -------------------------------------------------- use cases and reasons */
+.use-case-grid,
+.reason-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.use-case,
+.reason {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+.use-case h3,
+.reason h3 {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.use-case p,
+.reason p {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+/* -------------------------------------------------------------------- FAQ */
+.faq-list {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.faq-list dt {
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 1.75rem;
+  font-size: 1.05rem;
+}
+
+.faq-list dt:first-of-type {
+  margin-top: 0;
+}
+
+.faq-list dd {
+  margin: 0.4rem 0 0;
+  color: var(--ink-2);
+}
+
+.faq-list dd a {
+  color: var(--sky-text);
+}
+
+/* ------------------------------------------------------------ blog links */
+.blog-links {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+}
+
+.blog-links li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-links a,
+.blog-links-more a {
+  color: var(--sky-text);
+}
+
+.blog-links-more {
+  max-width: 46rem;
+  margin: 1rem auto 0;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .hero-title h1 {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title .wordmark {
+    font-size: 2.75rem;
+  }
+
+  .hero-lede {
+    text-align: center;
+  }
+}
