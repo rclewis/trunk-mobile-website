@@ -293,8 +293,14 @@ section h2 {
   background:radial-gradient(closest-side, rgba(6,166,240,.30), transparent 70%);
   filter:blur(4px); z-index:0; pointer-events:none;
 }
+/* height:auto is load-bearing. The markup carries width/height attributes so the
+   browser can reserve space before the image loads, but those attributes are
+   presentational hints that CSS only displaces for the properties it sets. Set
+   width alone and the height="2796" attribute survives, stretching a 248px-wide
+   phone screenshot to 2796px tall. .hero-screenshots img already pairs its width
+   with height:auto for the same reason. */
 .screenshot-row img{
-  position:relative; z-index:1; width:248px; border-radius:22px;
+  position:relative; z-index:1; width:248px; height:auto; border-radius:22px;
   box-shadow:0 30px 60px rgba(10,42,61,.30); border:1px solid rgba(255,255,255,.7);
 }
 .screenshot-row img:nth-of-type(1){ transform:rotate(-4deg) translateY(14px); }
