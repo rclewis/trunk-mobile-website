@@ -1,0 +1,201 @@
+# SEO Enablement — Full-Site Verification Report
+
+**Date:** 2026-07-30
+**Branch:** `seo-enablement`
+**Scope:** Task 8 of the SEO enablement project. No site files were modified by this task — it is read-only verification across the work completed in Tasks 1–7.
+
+---
+
+## Step 1: Full validation suite
+
+### `node scripts/check-seo.mjs`
+
+```
+  ok    404.html
+  ok    blog/index.html
+  ok    blog/posts/001-packing-hacks.html
+  ok    blog/posts/002-carryon-guide.html
+  ok    blog/posts/003-smarter-with-trunk.html
+  ok    index.html
+  ok    privacy.html
+
+All 7 page(s) passed.
+```
+
+Exit code: `0`.
+
+**Result: matches expectation.** All 7 pages `ok`.
+
+### `xmllint --noout sitemap.xml && echo "sitemap ok"`
+
+```
+sitemap ok
+```
+
+Exit code: `0`.
+
+**Result: matches expectation.** `sitemap.xml` is well-formed.
+
+---
+
+## Step 2: Internal link checker
+
+Ran the brief's Python snippet, which walks every `*.html` file outside `.git`, `docs`, and `node_modules`, and checks every `href=`/`src=` target (excluding absolute URLs, `mailto:`, `#`, and `data:`) resolves to a real file on disk.
+
+Files scanned (confirmed via `find . -name "*.html" -not -path "./.git/*" -not -path "./docs/*" -not -path "./node_modules/*"`):
+
+```
+./404.html
+./blog/index.html
+./blog/posts/001-packing-hacks.html
+./blog/posts/002-carryon-guide.html
+./blog/posts/003-smarter-with-trunk.html
+./index.html
+./privacy.html
+```
+
+(7 files — the same 7 pages `check-seo.mjs` covers.)
+
+### Output
+
+```
+all internal links resolve
+```
+
+**Result: matches expectation.** No broken internal links across `/`, `/blog/`, and `/blog/posts/`.
+
+---
+
+## Step 3: JSON-LD inventory (automatable half only)
+
+Ran the brief's extraction script, which regex-extracts every `<script type="application/ld+json">` block from each page, parses it as JSON, and prints `page: @type`.
+
+### Output (verbatim, 11 lines)
+
+```
+blog/index.html: Blog
+blog/posts/001-packing-hacks.html: BlogPosting
+blog/posts/001-packing-hacks.html: BreadcrumbList
+blog/posts/002-carryon-guide.html: BlogPosting
+blog/posts/002-carryon-guide.html: BreadcrumbList
+blog/posts/003-smarter-with-trunk.html: BlogPosting
+blog/posts/003-smarter-with-trunk.html: BreadcrumbList
+index.html: MobileApplication
+index.html: WebSite
+index.html: FAQPage
+privacy.html: WebPage
+```
+
+Total block count: **11**.
+
+### Distribution vs. expectation
+
+| Page | Expected | Actual |
+|---|---|---|
+| `index.html` | 3 (MobileApplication, WebSite, FAQPage) | 3 (MobileApplication, WebSite, FAQPage) ✓ |
+| `privacy.html` | 1 (WebPage) | 1 (WebPage) ✓ |
+| `blog/index.html` | 1 (Blog) | 1 (Blog) ✓ |
+| `blog/posts/001-packing-hacks.html` | 2 (BlogPosting, BreadcrumbList) | 2 ✓ |
+| `blog/posts/002-carryon-guide.html` | 2 (BlogPosting, BreadcrumbList) | 2 ✓ |
+| `blog/posts/003-smarter-with-trunk.html` | 2 (BlogPosting, BreadcrumbList) | 2 ✓ |
+| `404.html` | 0 (by design) | 0 (no `ld+json` script found) ✓ |
+| **Total** | **11** | **11** ✓ |
+
+**Result: matches expectation exactly.** Every block parsed as valid JSON, and every `@type` matched the plan's inventory. This confirms structural validity (well-formed JSON, correct `@type`) — it does **not** confirm Schema.org conformance of every property. See "Post-deploy: human verification" below; the validator.schema.org submission is an interactive web form this task cannot submit to, and it is recorded there as a pending human action, not claimed as done here.
+
+---
+
+## Step 4: Image directory size (page-weight improvement)
+
+### Current state
+
+```
+$ du -sh assets/images
+2.5M	assets/images
+```
+
+Breakdown of the current directory:
+
+```
+960K  assets/images/v2.0
+288K  assets/images/app_icon_carryon.png
+256K  assets/images/screenshot_1.png
+236K  assets/images/screenshot_2.png
+180K  assets/images/screenshot_5.png
+152K  assets/images/screenshot_3.png
+136K  assets/images/screenshot_4.png
+100K  assets/images/packed_suitcase.jpg
+ 80K  assets/images/notepad.jpg
+ 64K  assets/images/twitter_banner.jpg
+ 60K  assets/images/lightbulb.jpg
+ 16K  assets/images/favicon.ico
+4.0K  assets/images/app_icon.svg
+4.0K  assets/images/app_icon_new.svg
+```
+
+**Current size matches the brief's expectation of ~2.5 MB.**
+
+### Before-state — discrepancy found
+
+The brief and the master plan (`docs/superpowers/plans/2026-07-30-seo-enablement.md`, Step 4 of Task 8) both state the directory held **~9.6 MB before Task 2**. To verify this independently rather than take it on faith, I reconstructed `assets/images` at every commit in the repository's history using `git archive <commit> -- assets/images | tar -x` into a scratch directory, then ran `du -sh` on each:
+
+```
+14adc23 (initial commit): assets/images not present in this commit
+5cefe86: 1.5M
+d211551: 5.2M
+e6612ba: 5.2M
+bbb448e: 5.2M
+882d933: 5.2M
+432c0cf: 5.2M
+818c488: 4.2M
+a54539b: 5.6M
+5219e00: 5.6M
+c861a62 (main tip pre-branch): 5.6M
+d05185a (SEO plan added): 5.6M
+2df489c (SEO metadata script added, immediately before Task 2): 5.6M
+4b751f5 (Task 2's resize commit — "after"): 2.5M
+```
+
+**Finding:** the largest `assets/images` ever measures in the full git history is **5.6 MB**, at the commit immediately preceding Task 2's resize commit (`2df489c`). The size never reaches 9.6 MB at any point in history. The plan/brief's "~9.6 MB before Task 2" figure is **not corroborated** by the repository's history — the actual, reconstructable before/after for Task 2 is **5.6 MB → 2.5 MB** (a 55% reduction), not 9.6 MB → 2.5 MB (a 74% reduction).
+
+This does not change the bottom-line conclusion — the directory is substantially smaller than any historical state, and Task 2's own report (`​.superpowers/sdd/2026-07-30-seo-enablement/task-2-report.md`) independently documents a ~3.46 MB → ~298 KB reduction across the four files it touched, which is consistent with the 5.6 MB → 2.5 MB whole-directory figures above. But the specific "~9.6 MB" baseline number cited in the brief and the master plan does not match any measurable point in git history, so I am flagging it here as a discrepancy rather than repeating it as fact. No site file was changed to investigate this; the scratch checkouts were done in `/tmp` and discarded.
+
+**Result: current size matches expectation (~2.5 MB). The historical baseline number in the brief (~9.6 MB) does not match what git history shows (max 5.6 MB) — flagged as a discrepancy, not corrected in any project file.**
+
+---
+
+## Summary table
+
+| Check | Expected | Actual | Status |
+|---|---|---|---|
+| `check-seo.mjs` | 7/7 `ok`, exit 0 | 7/7 `ok`, exit 0 | Match |
+| `xmllint --noout sitemap.xml` | well-formed | well-formed | Match |
+| Internal link checker | `all internal links resolve` | `all internal links resolve` | Match |
+| JSON-LD block count | 11 | 11 | Match |
+| JSON-LD distribution | 3/1/1/2/2/2/0 | 3/1/1/2/2/2/0 | Match |
+| `du -sh assets/images` (current) | ~2.5 MB | 2.5 MB | Match |
+| `du -sh assets/images` (historical baseline, "before Task 2") | ~9.6 MB (per brief) | 5.6 MB (per git history reconstruction) | **Discrepancy — brief's number not corroborated** |
+
+---
+
+## Post-deploy: human verification
+
+These require the live site and the owner's Google/Facebook/LinkedIn accounts. They happen **after** this branch merges and GitHub Pages redeploys — none of them have been performed as part of this task, and none can be automated from this environment.
+
+- [ ] Search Console → URL Inspection on `https://trunkmobile.app/` → **Request indexing**.
+- [ ] Search Console → Sitemaps → resubmit `https://trunkmobile.app/sitemap.xml`. Confirm it reports 6 discovered URLs and no parse error.
+- [ ] Rich Results Test (<https://search.google.com/test/rich-results>) on the homepage and one blog post. Confirm the app, FAQ, and article entities are detected.
+- [ ] PageSpeed Insights, **Mobile** tab, on `/` and `/blog/`. Compare against the Pre-flight baselines — the blog index is where the image work should show the largest gain.
+- [ ] Facebook Sharing Debugger (<https://developers.facebook.com/tools/debug/>) on the homepage. Click **Scrape Again** to clear the cached blank card from the old relative `og:image`.
+- [ ] LinkedIn Post Inspector (<https://www.linkedin.com/post-inspector/>) on the homepage. X retired its Card Validator but reads the same tags, so these two cover it.
+- [ ] Four weeks after deploy, compare Search Console impressions and average position against the baseline. Ranking movement on the head term realistically takes 2–3 months; long-tail queries move first.
+- [ ] Paste each of the 11 JSON-LD blocks inventoried above into <https://validator.schema.org/> and confirm each returns clean (warnings about recommended-but-absent properties are acceptable; errors are not). This task confirmed the 11 blocks are well-formed JSON with the expected `@type` values, but did **not** submit them to the validator — that requires an interactive web form this task cannot fill out.
+
+---
+
+## Deferred, deliberately (carried forward from the brief, unchanged by this task)
+
+- **Blog post URL restructuring.** `/blog/posts/001-packing-hacks.html` buries the keyword behind a numeric prefix. Renaming needs redirects, and GitHub Pages cannot issue them server-side. Future posts should use keyword-first paths.
+- **WebP conversion.** Resizing captures most of the saving. Revisit only if PageSpeed still falls short after Task 2.
+- **Swapping in the `assets/images/v2.0/` screenshots.** The live `screenshot_1–5.png` files show the old app UI. A content decision, not an SEO one.
+- **`aggregateRating` in the app schema.** Only worth adding against a verifiable, maintained source.
