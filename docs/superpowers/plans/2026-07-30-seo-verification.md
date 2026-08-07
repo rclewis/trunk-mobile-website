@@ -197,7 +197,23 @@ These require the live site and the owner's Google/Facebook/LinkedIn accounts. T
 
 - **Blog post URL restructuring.** `/blog/posts/001-packing-hacks.html` buries the keyword behind a numeric prefix. Renaming needs redirects, and GitHub Pages cannot issue them server-side. Future posts should use keyword-first paths.
 - **WebP conversion.** Resizing captures most of the saving. Revisit only if PageSpeed still falls short after Task 2.
-- **Swapping in the `assets/images/v2.0/` screenshots.** The live `screenshot_1–5.png` files show the old app UI. A content decision, not an SEO one.
+- ~~**Swapping in the `assets/images/v2.0/` screenshots.**~~ **Not outstanding —
+  this was already done.** Commit `a54539b` ("Refresh website to Checklist design
+  system with v2.0 screenshots") applied them in July. Verified by SHA-256: all
+  five live PNGs were byte-identical to their `v2.0/` counterparts immediately
+  before the WebP conversion.
+
+  This entry was wrong from the start. It was carried forward from
+  `docs/design/WEBSITE_REDESIGN.md`, which flags the screenshots as showing "the
+  OLD app UI" — true when that document was written, false after `a54539b`
+  superseded it. The claim then propagated into the design spec and this plan
+  unchallenged. **`WEBSITE_REDESIGN.md` is a historical document and its
+  screenshot note is stale; do not act on it.**
+
+  `assets/images/v2.0/` is now the full-resolution master source for the shipped
+  WebP derivatives, since the intermediate `screenshot_*.png` copies were removed.
+  To regenerate: resize to 600px wide (hero, `screenshot_1–3`) or 744px wide (row,
+  `screenshot_4–5`) and encode WebP q85.
 - **`aggregateRating` in the app schema.** Only worth adding against a verifiable, maintained source.
 
 ---
