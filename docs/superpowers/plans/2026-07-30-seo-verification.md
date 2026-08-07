@@ -210,10 +210,25 @@ These require the live site and the owner's Google/Facebook/LinkedIn accounts. T
   unchallenged. **`WEBSITE_REDESIGN.md` is a historical document and its
   screenshot note is stale; do not act on it.**
 
-  `assets/images/v2.0/` is now the full-resolution master source for the shipped
-  WebP derivatives, since the intermediate `screenshot_*.png` copies were removed.
-  To regenerate: resize to 600px wide (hero, `screenshot_1–3`) or 744px wide (row,
-  `screenshot_4–5`) and encode WebP q85.
+  **Master sources and how to regenerate.** The intermediate `screenshot_*.png`
+  copies were removed, so the masters live in two places:
+
+  | Slot | Master | Shipped |
+  |---|---|---|
+  | `screenshot_1–3` (hero) | `docs/design/v2.2 assets/web-screenshots/` | 660×1431 WebP q85 |
+  | `screenshot_4–5` (row) | `assets/images/v2.0/` | 744×1613 WebP q85 |
+
+  The hero trio was replaced in v2.2 (a Settings tab was added to the bottom nav);
+  screens 4 and 5 have no tab bar and were unchanged, so they still derive from
+  v2.0. The v2.2 sources arrived pre-sized at 660px and were encoded at native
+  size rather than downscaled to the 600px target — re-resampling an
+  already-downscaled source would compound quality loss to save 9 KB.
+
+  Rule of thumb for future captures: ship at roughly 3× the largest CSS width the
+  slot renders at (200px mobile for the hero, 248px desktop for the row), or at
+  native size if the source already sits near that. Encode WebP q85, then update
+  the `width`/`height` attributes in `index.html` to the real file dimensions —
+  they are asserted by `scripts/check-seo.mjs` only for presence, not accuracy.
 - **`aggregateRating` in the app schema.** Only worth adding against a verifiable, maintained source.
 
 ---
