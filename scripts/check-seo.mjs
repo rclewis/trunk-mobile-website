@@ -20,6 +20,17 @@ const SKIP_DIRS = new Set(['.git', 'node_modules', 'docs', 'scripts', 'assets'])
 /* 404.html is deliberately noindex, so the discovery tags don't apply to it. */
 const NOINDEX = new Set(['404.html']);
 
+/* Search Console verification token. Google reads this from the homepage only.
+ *
+ * This is asserted rather than trusted because losing it fails silently: there is
+ * no error page and no broken link, Google simply revokes the property after a
+ * while and the reports stop arriving. index.html's <head> has been rewritten
+ * from scratch several times, and each rewrite was one forgotten line away from
+ * costing the Search Console history.
+ *
+ * If you ever re-verify with a fresh token, update this value to match. */
+const VERIFY_TOKEN = 'pKF7ivNDv7vS3oPGxFxO6no69DMk7vZL1f-w3tNy7zY';
+
 function findHtml(dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || SKIP_DIRS.has(entry.name)) continue;
@@ -73,6 +84,16 @@ function check(file) {
 
   if (!/<meta\b[^>]*name\s*=\s*["']viewport["']/i.test(html)) {
     errs.push('missing <meta name="viewport">');
+  }
+
+  /* Homepage only — Google does not look anywhere else for this. */
+  if (rel === 'index.html') {
+    const token = metaContent(html, 'google-site-verification');
+    if (token === null) {
+      errs.push('missing <meta name="google-site-verification"> — losing this silently revokes Search Console access');
+    } else if (token !== VERIFY_TOKEN) {
+      errs.push(`google-site-verification token changed\n           found:    ${token}\n           expected: ${VERIFY_TOKEN}`);
+    }
   }
 
   if (!noindex) {

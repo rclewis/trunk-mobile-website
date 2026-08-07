@@ -350,6 +350,20 @@ social and schema images (which the Task 2 resize had pushed below Google's
 1200px Article guidance) now point at the 1200×630 banner, and the site-wide
 copyright year was updated to 2026. What remains is deliberately deferred.
 
+### Done since: the Search Console verification token is now guarded
+
+`check-seo.mjs` asserts that `index.html` still carries its
+`google-site-verification` meta tag with the expected token. This was not on the
+list below and turned out to matter more than anything on it: the tag lives in a
+`<head>` that was rewritten from scratch three times, and losing it fails
+silently — no broken page, no error, Google just revokes the property and the
+reports stop. Verified the check fires both when the tag is removed and when the
+token is altered.
+
+Verification uses the HTML-tag method against a URL-prefix property, so no DNS
+TXT record is required. A Domain property (`trunkmobile.app`) would need one, and
+would additionally survive any HTML change.
+
 ### Worth doing next: widen `scripts/check-seo.mjs`
 
 The script is the only automated check, and the sole safety net for the
