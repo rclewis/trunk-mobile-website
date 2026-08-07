@@ -278,7 +278,50 @@ Fixes applied:
 The homepage now issues **zero cross-origin requests**, and mobile Performance
 scores **100**.
 
-### What the two rounds are worth remembering for
+### Round three: accessibility (95 → 100)
+
+Lighthouse flagged insufficient contrast and a missing `main` landmark. Neither
+was a one-element problem.
+
+**Contrast was two design tokens sitting just under threshold**, which is why it
+touched most of the page at once:
+
+| Token | Was | Now |
+|---|---|---|
+| `--ink-2` `#6B7785` → `#677280` | 4.25:1 on `--bg` | 4.56:1 |
+| `--sky-text` `#0883C2` → `#0776AF` | 3.89 / 4.17 / 3.78:1 | 4.64 / 4.98 / 4.51 |
+
+Darkened 4% and 10%, same hue, clearing `--bg`, `--card` and `--sky-tint`
+together. Every body paragraph, every link and the step numbers were affected.
+
+Plus a real bug: the consent banner's Accept button was **white on `--sky` at
+2.72:1**, contradicting a rule `docs/design/WEBSITE_REDESIGN.md` already states —
+never small white text on `--sky`, use `--on-sky`. Now 5.47:1.
+
+The feature icon fills were deliberately left alone at 3.78:1 and 3.28:1. They
+are graphics, not text; WCAG 1.4.11 asks 3:1 of non-text and both pass.
+Darkening them would have muddied the palette for no compliance gain.
+
+`index.html` and `privacy.html` gained a `<main>`; the blog pages and 404
+already had one.
+
+**A first pass reported the hero text as failing badly. That was wrong** — the
+sampler was reading the bright logo tile and anti-aliased glyph edges as
+background. Re-measured against the actual rendered gradient pixels with the
+foreground hidden, hero text runs 7:1 to 9:1. Recorded because trusting that
+first pass would have meant "fixing" something that was never broken.
+
+---
+
+## Final state
+
+Mobile Lighthouse: **Performance 100, Accessibility 100, Best Practices 100,
+SEO 100**, and 2/2 on agentic browsing — the last of which the structured data,
+semantic landmarks and clean heading outline all feed.
+
+---
+
+### What the rounds are worth remembering for
 
 Both misses came from measuring the wrong thing.
 
