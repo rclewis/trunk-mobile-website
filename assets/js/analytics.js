@@ -113,7 +113,9 @@
     'padding:.55rem 1.15rem;border-radius:var(--r-btn,14px);',
     'border:1px solid transparent;background:none;color:inherit}',
     '.trunk-consent__btn:focus-visible{outline:2px solid var(--sky,#06A6F0);outline-offset:2px}',
-    '.trunk-consent__btn--accept{background:var(--sky,#06A6F0);color:#fff}',
+    // Dark text on the sky fill, not white: white on --sky is 2.72:1 and fails
+    // WCAG AA. This is the rule the design system already states.
+    '.trunk-consent__btn--accept{background:var(--sky,#06A6F0);color:var(--on-sky,#0A2A3D)}',
     '.trunk-consent__btn--accept:hover{filter:brightness(1.06)}',
     '.trunk-consent__btn--decline{',
     'border-color:var(--border,#E8ECF1);color:var(--ink-2,#6B7785)}',
