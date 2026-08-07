@@ -239,6 +239,44 @@ that markup complexity was the deferral's stated reason.
 The superseded PNGs were deleted. They remain in git history, and
 `assets/images/v2.0/` already holds newer captures flagged to replace them.
 
+### Round two: fonts (score 55 → 72 → pending)
+
+The image fix took the score to 72. PageSpeed then reported render-blocking
+requests at ~1,700 ms as the dominant remaining cost, plus a font-display
+warning and a network dependency tree.
+
+Measured cause:
+
+| Resource | Size |
+|---|---|
+| Material Symbols Rounded woff2 | **5,348,916 bytes (5.1 MB)** |
+| Plus Jakarta Sans, latin subset | 27,272 bytes |
+
+The homepage pulled the entire Material Symbols variable font — every icon in
+the library, every variable axis — to draw **four** feature icons. Its stylesheet
+URL also omitted `&display=swap`, so those icons blocked on that download.
+
+Both external stylesheets were also cross-origin, creating the serial chain
+PageSpeed flagged: `fonts.googleapis.com` for the CSS, then `fonts.gstatic.com`
+for the file, each paying its own DNS and TLS before first paint.
+
+Fixes applied:
+
+- **The four icons are now inline SVG** (Material Symbols Rounded, Apache 2.0),
+  eliminating the 5.1 MB font and one render-blocking request outright. Google's
+  `icon_names=` subsetting was measured as an alternative — it reaches 6,432
+  bytes — but it keeps the cross-origin blocking request, and render-blocking was
+  the headline cost.
+- **Plus Jakarta Sans is self-hosted** at `/assets/fonts/`, latin subset only,
+  with `font-display: swap` and a `<link rel="preload">`. Verified in a browser
+  that the file is a genuine variable font (weights 200/400/700/800 render at
+  four distinct widths), so `font-weight: 200 800` is correct and headings are
+  not faux-bolded.
+- Both `<link>`s to Google Fonts and both `preconnect`s were removed from all
+  seven pages.
+
+The homepage now issues **zero cross-origin requests**.
+
 ---
 
 ## Follow-ups found by the final whole-branch review

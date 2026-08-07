@@ -25,10 +25,7 @@
   <meta name="twitter:description" content="Plan trips, build reusable packing lists, and track exactly which bag each item is in. Trunk is a free packing list app for travelers." />
   <meta name="twitter:image" content="https://trunkmobile.app/assets/images/twitter_banner.jpg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="./assets/images/app_icon_carryon.png" />
@@ -182,22 +179,22 @@
             <h2>Everything you need to pack for a trip</h2>
             <div class="feature-grid">
                 <div class="feature">
-                <span class="material-symbols-rounded">flight_takeoff</span>
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 -960 960 960" fill="currentColor" role="img"><title>flight takeoff</title><path d="M808-487 248-336q-26 7-50.5-3T159-372L68-524q-11-17-3.5-36T92-584l23-6q10-2 19.5-.5T152-582l96 80 140-37-163-218q-16-21-8-45.5t34-31.5l21-5q11-3 23.5-1t21.5 10l279 235 170-46q32-9 60.5 7.5T864-585q9 32-7.5 60.5T808-487ZM160-120q-17 0-28.5-11.5T120-160q0-17 11.5-28.5T160-200h640q17 0 28.5 11.5T840-160q0 17-11.5 28.5T800-120H160Z"/></svg></span>
                 <h3>Create Trips</h3>
                 <p>Set your destination, dates, and trip notes, then keep every trip's packing list in its own place.</p>
                 </div>
                 <div class="feature">
-                <span class="material-symbols-rounded">checklist</span>
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 -960 960 960" fill="currentColor" role="img"><title>checklist</title><path d="m221-313 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-228q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm0-320 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-548q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm339 353q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h280q17 0 28.5 11.5T880-320q0 17-11.5 28.5T840-280H560Zm0-320q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h280q17 0 28.5 11.5T880-640q0 17-11.5 28.5T840-600H560Z"/></svg></span>
                 <h3>Build Packing Lists</h3>
                 <p>Add items, assign them to bags, and watch your packing progress as you check things off.</p>
                 </div>
                 <div class="feature">
-                <span class="material-symbols-rounded">checkroom</span>
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 -960 960 960" fill="currentColor" role="img"><title>checkroom</title><path d="M240-240h480L480-420 240-240Zm185-444q-5 11-14.5 18t-22.5 7q-17 0-28.5-11.5T348-699q0-5 .5-8.5t2.5-7.5q17-38 52-61.5t77-23.5q58 0 99 40.5t41 98.5q0 47-27.5 84T520-526v36l344 258q8 5 12 13.5t4 18.5q0 17-11.5 28.5T840-160H120q-17 0-28.5-11.5T80-200q0-10 4-18.5T96-232l344-258v-70q0-17 12-28.5t29-11.5q25 0 42-18t17-43q0-25-17.5-42T480-720q-18 0-33 9.5T425-684Z"/></svg></span>
                 <h3>Item Inventory</h3>
                 <p>Keep a reusable inventory of everything you travel with, categorized and ready to drop into your next trip.</p>
                 </div>
                 <div class="feature">
-                <span class="material-symbols-rounded">luggage</span>
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 -960 960 960" fill="currentColor" role="img"><title>luggage</title><path d="M280-120q-33 0-56.5-23.5T200-200v-440q0-33 23.5-56.5T280-720h80v-80q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v80h80q33 0 56.5 23.5T760-640v440q0 33-23.5 56.5T680-120q0 17-11.5 28.5T640-80q-17 0-28.5-11.5T600-120H360q0 17-11.5 28.5T320-80q-17 0-28.5-11.5T280-120Zm91.5-468.5Q360-577 360-560v280q0 17 11.5 28.5T400-240q17 0 28.5-11.5T440-280v-280q0-17-11.5-28.5T400-600q-17 0-28.5 11.5Zm160 0Q520-577 520-560v280q0 17 11.5 28.5T560-240q17 0 28.5-11.5T600-280v-280q0-17-11.5-28.5T560-600q-17 0-28.5 11.5ZM440-720h80v-80h-80v80Z"/></svg></span>
                 <h3>Luggage Tracking</h3>
                 <p>Know which suitcase, carry-on, or backpack every item went into — no more unzipping three bags to find your charger.</p>
                 </div>

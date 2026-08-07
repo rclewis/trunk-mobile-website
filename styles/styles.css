@@ -8,6 +8,22 @@
   --shadow-card:0 4px 16px rgba(22,32,43,.06);
 }
 
+/* Self-hosted Plus Jakarta Sans (SIL Open Font License 1.1).
+   Previously loaded from fonts.googleapis.com, which cost a render-blocking
+   cross-origin stylesheet plus a second hop to fonts.gstatic.com for the file --
+   the serial chain PageSpeed reported as ~1700ms of render-blocking. Same-origin
+   removes both hops. Latin subset only; the site is English and Google's latin
+   range covers the general punctuation the copy uses (em dash, curly quotes).
+   The file is a variable font, so one download serves every weight 200-800. */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/assets/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* General */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -70,14 +86,6 @@ footer a:hover {
 
 .hero-nav > nav > a {
   font-size: 1.2rem;
-}
-
-.material-symbols-rounded {
-  font-variation-settings:
-    'FILL' 1,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
 }
 
 .hero-nav nav a {
@@ -259,7 +267,11 @@ section h2 {
   color: var(--ink-2);
 }
 
-.feature span.material-symbols-rounded {
+/* Feature icons are inline SVG (Material Symbols Rounded, Apache 2.0), not an
+   icon font. The font version cost a 5.1MB variable woff2 -- the whole icon
+   library, every axis -- to draw these four glyphs. The SVGs inherit `color`
+   via fill:currentColor, so the tinting rules below still drive them. */
+.feature .feature-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,14 +279,19 @@ section h2 {
   height: 60px;
   margin: 0 auto .9rem;
   border-radius: 18px;
-  font-size: 30px;
   background: var(--sky-tint);
   color: var(--sky-text);
 }
 
+.feature .feature-icon svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
 /* alternate two cards to coral for rhythm */
-.feature-grid .feature:nth-child(2) span.material-symbols-rounded,
-.feature-grid .feature:nth-child(4) span.material-symbols-rounded {
+.feature-grid .feature:nth-child(2) .feature-icon,
+.feature-grid .feature:nth-child(4) .feature-icon {
   background: var(--coral-tint);
   color: var(--coral-text);
 }
