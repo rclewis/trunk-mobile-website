@@ -239,7 +239,7 @@ that markup complexity was the deferral's stated reason.
 The superseded PNGs were deleted. They remain in git history, and
 `assets/images/v2.0/` already holds newer captures flagged to replace them.
 
-### Round two: fonts (score 55 → 72 → pending)
+### Round two: fonts (score 55 → 72 → **100**)
 
 The image fix took the score to 72. PageSpeed then reported render-blocking
 requests at ~1,700 ms as the dominant remaining cost, plus a font-display
@@ -275,7 +275,28 @@ Fixes applied:
 - Both `<link>`s to Google Fonts and both `preconnect`s were removed from all
   seven pages.
 
-The homepage now issues **zero cross-origin requests**.
+The homepage now issues **zero cross-origin requests**, and mobile Performance
+scores **100**.
+
+### What the two rounds are worth remembering for
+
+Both misses came from measuring the wrong thing.
+
+Round one scoped image work by file size **on disk**, which surfaced the blog
+thumbnails and missed the homepage screenshots — 98.5% of the payload on the page
+that actually matters. Rank pages by served weight, weighted by importance.
+
+Round two is the sharper lesson: the single largest resource on the site,
+a 5.1 MB icon font, was invisible to every audit performed here because all of
+them measured same-origin bytes. A `<link>` to a third-party stylesheet is an
+unbounded liability — it can pull down any amount of anything. Anything that is
+render-blocking and cross-origin deserves to be measured directly, not assumed
+small because the tag looks small.
+
+`scripts/check-seo.mjs` would not have caught either one; it validates markup,
+not weight. That is a reasonable boundary for it, but it means page weight needs
+its own check — PageSpeed on the homepage after any change touching assets,
+fonts, or `<head>`.
 
 ---
 
