@@ -202,6 +202,45 @@ These require the live site and the owner's Google/Facebook/LinkedIn accounts. T
 
 ---
 
+## Post-launch: homepage performance fix (2026-08-06)
+
+The first live PageSpeed run scored the homepage **55 on mobile**. Diagnosis:
+
+- LCP was `screenshot_1.png`, a 258 KB PNG, painting at 2,276 ms unthrottled
+- Five homepage screenshots totalled **960 KB — 98.5% of the page payload**
+- They were 1290px intrinsic but displayed at 180–248px CSS, roughly 2.4×
+  oversized even allowing for a 3× DPI screen
+
+**Root cause of the miss:** this plan's §9 scoped image optimization to the three
+blog thumbnails and the social banner — the largest files *on disk*. The homepage
+screenshots were never in scope, despite the homepage being the conversion
+target. Task 3 gave them `width`/`height` (correct for CLS) but nothing reduced
+their bytes. Sizing images by their on-disk rank rather than by their served
+weight on the most important page was the error.
+
+Measured comparison at the correct target widths (600px for the hero trio,
+744px for the row pair — 3× the largest CSS width across breakpoints):
+
+| Format | Total | vs. before |
+|---|---|---|
+| PNG resized | 771 KB | 81.5% — barely helps |
+| JPEG q82 | 266 KB | 28.1% |
+| **WebP q85** | **148 KB** | **15.7%** |
+
+PNG resizing barely helps because these are gradient-heavy UI captures that PNG
+encodes badly. WebP q85 was adopted: site-origin payload went **960 KB → 204 KB
+(-78.7%)**. Layout dimensions are unchanged, so there is no visual difference.
+
+This satisfies the WebP deferral recorded below on its own terms — that entry
+said to revisit "only if PageSpeed still falls short," and it did. No `<picture>`
+fallback was added: WebP has been universal since Safari 14 (2020), and avoiding
+that markup complexity was the deferral's stated reason.
+
+The superseded PNGs were deleted. They remain in git history, and
+`assets/images/v2.0/` already holds newer captures flagged to replace them.
+
+---
+
 ## Follow-ups found by the final whole-branch review
 
 Two findings from that review were fixed before merge: the three blog posts'
